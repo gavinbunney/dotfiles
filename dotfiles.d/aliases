@@ -1,0 +1,32 @@
+#!/bin/bash
+
+alias ussh='ssh -o StrictHostKeyChecking=No'
+alias ssh_ec2='ussh -l ec2-user'
+
+alias beep='echo -en "\007"'
+
+ls_opts='-h'
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+  ls_opts="${ls_opts} --color=always"
+else # macOS `ls`
+  ls_opts="${ls_opts} -G"
+fi
+
+## Directory listing
+alias ls="ls ${ls_opts}"
+alias ll="ls -al ${ls_opts}"
+alias la="ls -a ${ls_opts}"
+
+# Network
+alias flushdns='sudo discoveryutil mdnsflushcache'
+# simple ip
+alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d " " -f2'
+# more details
+alias ip1="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+# external ip
+alias ip2="curl -s http://icanhazip.com/ | awk '{print $1}'"
+alias networkreset="sudo networksetup -setv4off Wi-fi; sudo networksetup -setnetworkserviceenabled Wi-fi off; sudo networksetup -setnetworkserviceenabled Wi-fi on; sudo networksetup -setdhcp Wi-fi"
+
+# Tools simplified 
+alias chrome="open -a \"/Applications/Google Chrome.app\""
+alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron $@"

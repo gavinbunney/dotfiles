@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Terminal Colors
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# Preserve bash history in multiple terminal windows
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+export HISTTIMEFORMAT="%h %d %H:%M:%S> "
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="$PROMPT_COMMAND;history -a; history -c; history -r"
+
+# Java + Friends
+#export JAVA_VERSION=11
+export JAVA_VERSION=1.8
+export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
+export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
+export MAVEN_OPTS="-Xmx756m"
+
+# SSH
+export SSH_INSECURE='-o StrictHostKeyChecking=no'
+
+# Go
+export GOPATH=$HOME/dev/golang
+export GOROOT=/usr/local/opt/go/libexec
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOPATH
+export PATH=$PATH:$GOROOT/bin
+
+## Direnv
+eval "$(direnv hook bash)"
+export DIRENV_WARN_TIMEOUT=10s
