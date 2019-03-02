@@ -1,6 +1,8 @@
 tap "caskroom/versions"
 tap "caskroom/cask"
 tap "garethr/kubeval"
+tap "atlassian/tap"
+brew "atlassian/tap/atlassian-plugin-sdk"
 brew "awscli"
 brew "aws-iam-authenticator"
 brew "bash-completion"
