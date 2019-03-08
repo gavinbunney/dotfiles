@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -8,6 +8,16 @@ function homebrew() {
     echo ">"
     echo "> Installing Brewfile"
     brew bundle
+}
+
+function okta_aws() {
+    if [[ -d "$HOME/.okta" ]]; then
+        return 0
+    fi
+
+    echo ">"
+    echo "> Installing Okta AWS"
+    PREFIX=~/.okta bash <(curl -fsSL https://raw.githubusercontent.com/oktadeveloper/okta-aws-cli-assume-role/master/bin/install.sh) -i
 }
 
 function gitconfig() {
@@ -40,6 +50,7 @@ EOF
 }
 
 homebrew
+okta_aws
 gitconfig
 profile
 
