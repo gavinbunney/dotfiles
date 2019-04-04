@@ -31,6 +31,7 @@ function gitconfig() {
     git config --global --replace-all user.email 'gbunney@guidewire.com'
 
     git config --global pull.rebase true
+    git config --global rebase.autoStash true
     git config --global push.default simple
     git config --global --replace-all core.excludesfile '/Users/gbunney/.gitignore_global'
 }
