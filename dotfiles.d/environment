@@ -30,6 +30,10 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 
+# Terraform
+export TERRAFORM_HOME=/usr/local/opt/terraform@0.11
+export PATH=$PATH:$TERRAFORM_HOME/bin
+
 ## Direnv
 eval "$(direnv hook bash)"
 export DIRENV_WARN_TIMEOUT=10s
