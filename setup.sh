@@ -10,14 +10,11 @@ function homebrew() {
     brew bundle
 }
 
-function okta_aws() {
-    if [[ -d "$HOME/.okta" ]]; then
-        return 0
-    fi
-
+function pip() {
     echo ">"
-    echo "> Installing Okta AWS"
-    PREFIX=~/.okta bash <(curl -fsSL https://raw.githubusercontent.com/oktadeveloper/okta-aws-cli-assume-role/master/bin/install.sh) -i
+    echo "> Install mkdocs and themes"
+    pip3 install mkdocs
+    pip3 install mkdocs-gitbook
 }
 
 function gitconfig() {
@@ -51,7 +48,7 @@ EOF
 }
 
 homebrew
-okta_aws
+pip
 gitconfig
 profile
 
