@@ -38,7 +38,3 @@ export PATH=$PATH:$TERRAFORM_HOME/bin
 eval "$(direnv hook bash)"
 export DIRENV_WARN_TIMEOUT=10s
 
-## Okta AWS
-if [[ -d "$HOME/.okta/bin" && ":$PATH:" != *":$HOME/.okta/bin:"* ]]; then
-    PATH="$HOME/.okta/bin:$PATH"
-fi
