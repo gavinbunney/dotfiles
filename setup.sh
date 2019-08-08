@@ -31,6 +31,8 @@ function gitconfig() {
     git config --global rebase.autoStash true
     git config --global push.default simple
     git config --global --replace-all core.excludesfile '/Users/gbunney/.gitignore_global'
+
+    git config --global commit.message "${DOTFILES_DIR}/.gitmessage"
 }
 
 function profile() {
