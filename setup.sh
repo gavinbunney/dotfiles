@@ -12,9 +12,10 @@ function homebrew() {
 
 function pip() {
     echo ">"
-    echo "> Install mkdocs and themes"
+    echo "> Install python packages"
     pip3 install mkdocs
     pip3 install mkdocs-gitbook
+    pip3 install --upgrade gimme-aws-creds
 }
 
 function gitconfig() {
