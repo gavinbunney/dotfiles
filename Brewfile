@@ -1,5 +1,5 @@
-tap "caskroom/versions"
-tap "caskroom/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/cask"
 tap "garethr/kubeval"
 tap "atlassian/tap"
 brew "atlassian/tap/atlassian-plugin-sdk"
