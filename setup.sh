@@ -25,7 +25,7 @@ function gitconfig() {
     git config --global alias.amend 'commit --amend --no-edit'
 
     git config --global --replace-all user.name 'Gavin Bunney'
-    git config --global --replace-all user.email 'gbunney@guidewire.com'
+    git config --global --replace-all user.email 'gbunney@lyft.com'
 
     git config --global pull.rebase true
     git config --global rebase.autoStash true
