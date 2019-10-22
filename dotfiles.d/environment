@@ -38,3 +38,5 @@ export PATH=$PATH:$TERRAFORM_HOME/bin
 eval "$(direnv hook bash)"
 export DIRENV_WARN_TIMEOUT=10s
 
+## GPG
+export GPG_TTY=$(tty)
