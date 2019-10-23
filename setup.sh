@@ -51,7 +51,7 @@ function gitconfig() {
 
     git config --global --replace-all user.name 'Gavin Bunney'
     git config --global --replace-all user.email '409207+gavinbunney@users.noreply.github.com'
-    git config --global commit.gpgsign true
+    git config --global commit.gpgsign false
 
     git config --global pull.rebase true
     git config --global rebase.autoStash true
