@@ -29,6 +29,17 @@ function nelson() {
     mv nelson /usr/local/bin/
     popd ${TMP}
     rm -rf ${TMP}
+
+    echo ">"
+    echo "> Installing slipway"
+    TMP=$(mktemp -d)
+    pushd ${TMP}
+    curl -L -o slipway.tar.gz https://github.com/getnelson/slipway/releases/download/2.0.96/slipway-darwin-amd64-2.0.96.tar.gz
+    tar -zxvf slipway.tar.gz
+    chmod +x slipway
+    mv slipway /usr/local/bin/
+    popd ${TMP}
+    rm -rf ${TMP}
 }
 
 function gitconfig() {
