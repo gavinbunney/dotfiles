@@ -36,8 +36,8 @@ export TERRAFORM_HOME=/usr/local/opt/terraform@0.11
 export PATH=$PATH:$TERRAFORM_HOME/bin
 
 ## Direnv
-eval "$(direnv hook bash)"
-export DIRENV_WARN_TIMEOUT=10s
+#eval "$(direnv hook bash)"
+#export DIRENV_WARN_TIMEOUT=10s
 
 ## GPG
 export GPG_TTY=$(tty)
