@@ -11,7 +11,7 @@ export HISTFILESIZE=100000               # big big history
 export HISTTIMEFORMAT="%h %d %H:%M:%S> "
 
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="$PROMPT_COMMAND;history -a; history -c; history -r"
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Java + Friends
 #export JAVA_VERSION=11
