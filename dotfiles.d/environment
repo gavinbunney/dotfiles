@@ -35,6 +35,9 @@ export PATH=$PATH:$GOROOT/bin
 export TERRAFORM_HOME=/usr/local/opt/terraform@0.11
 export PATH=$PATH:$TERRAFORM_HOME/bin
 
+# Krew
+export PATH=$PATH:$HOME/.krew/bin
+
 ## Direnv
 #eval "$(direnv hook bash)"
 #export DIRENV_WARN_TIMEOUT=10s
