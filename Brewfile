@@ -1,6 +1,6 @@
 tap "homebrew/cask-versions"
 tap "homebrew/cask"
-tap "garethr/kubeval"
+tap "instrumenta/instrumenta"
 tap "atlassian/tap"
 brew "atlassian/tap/atlassian-plugin-sdk"
 brew "atlantis"
