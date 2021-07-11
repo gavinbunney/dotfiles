@@ -14,11 +14,14 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S> "
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Java + Friends
-#export JAVA_VERSION=11
-export JAVA_VERSION=1.8
+export JAVA_VERSION=11
+#export JAVA_VERSION=1.8
 export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 export MAVEN_OPTS="-Xmx756m"
+
+# Python
+export PATH=/Users/gbunney/Library/Python/3.8/bin:$PATH
 
 # SSH
 export SSH_INSECURE='-o StrictHostKeyChecking=no'
@@ -34,6 +37,7 @@ export PATH=$PATH:$GOROOT/bin
 # Terraform
 export TERRAFORM_HOME=/usr/local/opt/terraform@0.11
 export PATH=$PATH:$TERRAFORM_HOME/bin
+export TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache
 
 # Krew
 export PATH=$PATH:$HOME/.krew/bin
@@ -44,3 +48,9 @@ export PATH=$PATH:$HOME/.krew/bin
 
 ## GPG
 export GPG_TTY=$(tty)
+
+source $HOME/.spinnaker-env.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
