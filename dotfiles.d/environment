@@ -49,7 +49,14 @@ export PATH=$PATH:$HOME/.krew/bin
 ## GPG
 export GPG_TTY=$(tty)
 
-source $HOME/.spinnaker-env.sh
+# GCP
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
+# Spinnaker
+if [ -f $HOME/.spinnaker-env.sh ]; then
+  source $HOME/.spinnaker-env.sh
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

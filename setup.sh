@@ -42,6 +42,16 @@ function nelson() {
     rm -rf ${TMP}
 }
 
+function terraform() {
+    mkdir -p ~/.terraform.d/plugin-cache
+    tfenv install 1.0.0
+    tfenv install 0.15.3
+    tfenv install 0.13.4
+    tfenv install 0.12.29
+    tfenv install 0.11.11
+    tfenv use 1.0.0
+}
+
 function gitconfig() {
     echo ">"
     echo "> Setting up gitconfig"
@@ -79,6 +89,7 @@ homebrew
 pip
 gitconfig
 nelson
+terraform
 profile
 
 echo ">"
