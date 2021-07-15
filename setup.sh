@@ -43,8 +43,6 @@ function nelson() {
 }
 
 function terraform() {
-    rm -rf ${TMP}
-
     echo ">"
     echo "> Installing terraform versions"
     mkdir -p ~/.terraform.d/plugin-cache
@@ -76,8 +74,6 @@ function gitconfig() {
 }
 
 function max_files() {
-    rm -rf ${TMP}
-
     echo ">"
     echo "> Enabling higher max file/proc limits"
     cat <<EOF | sudo tee /Library/LaunchDaemons/limit.maxfiles.plist > /dev/null
