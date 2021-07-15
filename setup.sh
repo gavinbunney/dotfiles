@@ -43,6 +43,10 @@ function nelson() {
 }
 
 function terraform() {
+    rm -rf ${TMP}
+
+    echo ">"
+    echo "> Installing terraform versions"
     mkdir -p ~/.terraform.d/plugin-cache
     tfenv install 1.0.0
     tfenv install 0.15.3
@@ -71,6 +75,65 @@ function gitconfig() {
     git config --global commit.message "${DOTFILES_DIR}/.gitmessage"
 }
 
+function max_files() {
+    rm -rf ${TMP}
+
+    echo ">"
+    echo "> Enabling higher max file/proc limits"
+    cat <<EOF | sudo tee /Library/LaunchDaemons/limit.maxfiles.plist > /dev/null
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>limit.maxfiles</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>launchctl</string>
+      <string>limit</string>
+      <string>maxfiles</string>
+      <string>524288</string>
+      <string>524288</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>ServiceIPC</key>
+    <false/>
+  </dict>
+</plist>
+EOF
+    cat <<EOF | sudo tee /Library/LaunchDaemons/limit.maxproc.plist > /dev/null
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple/DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+      <key>Label</key>
+      <string>limit.maxproc</string>
+      <key>ProgramArguments</key>
+      <array>
+          <string>launchctl</string>
+          <string>limit</string>
+          <string>maxproc</string>
+          <string>2048</string>
+          <string>2048</string>
+      </array>
+      <key>RunAtLoad</key>
+      <true />
+      <key>ServiceIPC</key>
+      <false />
+  </dict>
+</plist>
+EOF
+
+    sudo chmod 644 /Library/LaunchDaemons/limit.maxfiles.plist
+    sudo chmod 644 /Library/LaunchDaemons/limit.maxproc.plist
+    sudo chown root:wheel /Library/LaunchDaemons/limit.maxfiles.plist
+    sudo chown root:wheel /Library/LaunchDaemons/limit.maxproc.plist
+    sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
+    sudo launchctl load -w /Library/LaunchDaemons/limit.maxproc.plist
+}
+
 function profile() {
     echo ">"
     echo "> Creating ~/.profile"
@@ -90,6 +153,7 @@ pip
 gitconfig
 nelson
 terraform
+max_files
 profile
 
 echo ">"
