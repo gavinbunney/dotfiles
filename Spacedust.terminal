@@ -167,7 +167,7 @@
 	<key>ProfileCurrentVersion</key>
 	<real>2.0699999999999998</real>
 	<key>ScrollAlternateScreen</key>
-	<false/>
+	<true/>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
