@@ -14,9 +14,10 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S> "
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Java + Friends
-export JAVA_VERSION=11
+#export JAVA_VERSION=11
 #export JAVA_VERSION=1.8
-export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
+#export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
+export JAVA_HOME="${HOME}/.sdkman/candidates/java/current"
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 export MAVEN_OPTS="-Xmx756m"
 
@@ -35,9 +36,11 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
 # Terraform
-export TERRAFORM_HOME=/usr/local/opt/terraform@0.11
-export PATH=$PATH:$TERRAFORM_HOME/bin
 export TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache
+
+# SDKMan
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Krew
 export PATH=$PATH:$HOME/.krew/bin

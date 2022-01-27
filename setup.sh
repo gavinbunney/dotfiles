@@ -30,6 +30,12 @@ function terraform() {
     tfenv use 1.0.0
 }
 
+function sdkman() {
+    echo ">"
+    echo "> Installing sdkman"
+    curl -s "https://get.sdkman.io" | bash
+}
+
 function gitconfig() {
     echo ">"
     echo "> Setting up gitconfig"
@@ -124,6 +130,7 @@ homebrew
 pip
 gitconfig
 terraform
+sdkman
 max_files
 profile
 
