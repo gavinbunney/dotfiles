@@ -127,9 +127,9 @@ EOF
 }
 
 homebrew
-pip
+#pip
 gitconfig
-terraform
+#terraform
 sdkman
 max_files
 profile
