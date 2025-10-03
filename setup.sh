@@ -23,17 +23,45 @@ function terraform() {
     echo "> Installing terraform versions"
     mkdir -p ~/.terraform.d/plugin-cache
     tfenv install 1.0.0
-    tfenv install 0.15.3
-    tfenv install 0.13.4
-    tfenv install 0.12.29
-    tfenv install 0.11.11
+    # tfenv install 0.15.3
+    # tfenv install 0.13.4
+    # tfenv install 0.12.29
+    # tfenv install 0.11.11
     tfenv use 1.0.0
 }
 
 function sdkman() {
     echo ">"
     echo "> Installing sdkman"
-    curl -s "https://get.sdkman.io" | bash
+    
+    if [ ! -d "$HOME/.sdkman" ]; then
+        curl -s "https://get.sdkman.io" | bash
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+    else
+        echo "> SDKMAN already installed"
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+    fi
+    
+    echo ">"
+    echo "> Installing Java versions via SDKMAN"
+    
+    sdk install java 8.0.462-zulu || true
+    sdk install java 17.0.16-zulu || true
+    sdk install java 21.0.8-zulu || true
+    sdk install java 24.0.2-zulu || true
+    sdk install java 25-zulu || true
+    
+    sdk default java 21.0.8-zulu || true
+    
+    echo ">"
+    echo "> Installing other useful tools via SDKMAN"
+    
+    sdk install maven || true
+    sdk install gradle || true
+    
+    echo ">"
+    echo "> Installed Java versions:"
+    ls -la ~/.sdkman/candidates/java/ 2>/dev/null | grep "zulu" || echo "Run 'sdk list java' to see installed versions"
 }
 
 function gitconfig() {
@@ -51,8 +79,6 @@ function gitconfig() {
     git config --global rebase.autoStash true
     git config --global push.default simple
     git config --global --replace-all core.excludesfile '/Users/gbunney/.gitignore_global'
-
-    git config --global commit.message "${DOTFILES_DIR}/.gitmessage"
 }
 
 function max_files() {
@@ -124,6 +150,48 @@ for file in \$SHELL_ROOT/dotfiles.d/*; do
   . \$file
 done
 EOF
+
+    echo ">"
+    echo "> Linking bash profile files"
+    ln -sf ${DOTFILES_DIR}/.bash_profile ~/.bash_profile
+    ln -sf ${DOTFILES_DIR}/.bashrc ~/.bashrc
+    
+    echo ">"
+    echo "> Linking git global ignore"
+    ln -sf ${DOTFILES_DIR}/.gitignore_global ~/.gitignore_global
+}
+
+function set_bash_shell() {
+    echo ">"
+    echo "> Setting bash as default shell"
+    
+    BASH_PATH=$(which bash)
+    CURRENT_SHELL=$(dscl . -read ~/ UserShell | sed 's/UserShell: //')
+    
+    if [ "$CURRENT_SHELL" != "$BASH_PATH" ]; then
+        if ! grep -q "$BASH_PATH" /etc/shells; then
+            echo "> Adding $BASH_PATH to /etc/shells"
+            echo "$BASH_PATH" | sudo tee -a /etc/shells > /dev/null
+        fi
+        
+        echo "> Changing default shell to bash"
+        chsh -s "$BASH_PATH"
+        echo "> Default shell changed to: $BASH_PATH"
+        echo "> Please restart your terminal for changes to take effect"
+    else
+        echo "> Bash is already your default shell: $BASH_PATH"
+    fi
+}
+
+function terminal_theme() {
+    echo ">"
+    echo "> Terminal Theme Setup"
+    echo "> To apply Spacedust theme:"
+    echo ">   1. Open Terminal > Settings (Cmd+,)"
+    echo ">   2. Click the gear icon at bottom and select 'Import'"
+    echo ">   3. Select: ${DOTFILES_DIR}/Spacedust.terminal"
+    echo ">   4. Click 'Default' button to set Spacedust as default"
+    echo "> Note: New terminal windows will use bash and the Spacedust theme"
 }
 
 homebrew
@@ -133,7 +201,10 @@ gitconfig
 sdkman
 max_files
 profile
+set_bash_shell
+terminal_theme
 
 echo ">"
 echo "> Done!"
+echo "> Please restart your terminal or run: source ~/.bash_profile"
 
