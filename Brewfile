@@ -1,5 +1,3 @@
-tap "homebrew/cask-versions"
-tap "homebrew/cask"
 tap "atlassian/tap"
 tap "hashicorp/tap"
 tap "tinygo-org/tools"
