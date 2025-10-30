@@ -183,6 +183,28 @@ function set_bash_shell() {
     fi
 }
 
+function sshconfig() {
+    echo ">"
+    echo "> Setting up SSH config"
+    
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    
+    if [ -f ~/.ssh/config ] && grep -q "SetEnv TERM=xterm-256color" ~/.ssh/config; then
+        echo "> SSH config already contains dotfiles settings"
+    else
+        echo "> Prepending SSH config from dotfiles"
+        if [ -f ~/.ssh/config ]; then
+            cat ${DOTFILES_DIR}/ssh_config ~/.ssh/config > ~/.ssh/config.tmp
+            mv ~/.ssh/config.tmp ~/.ssh/config
+        else
+            cp ${DOTFILES_DIR}/ssh_config ~/.ssh/config
+        fi
+        chmod 600 ~/.ssh/config
+        echo "> SSH config updated with TERM=xterm-256color, ServerAliveInterval, and ServerAliveCountMax"
+    fi
+}
+
 function terminal_theme() {
     echo ">"
     echo "> Terminal Theme Setup"
@@ -201,6 +223,7 @@ gitconfig
 sdkman
 max_files
 profile
+sshconfig
 set_bash_shell
 terminal_theme
 
